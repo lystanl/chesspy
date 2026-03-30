@@ -1,0 +1,1 @@
+"""Chess Tutor - Puzzles package"""

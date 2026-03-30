@@ -1,0 +1,594 @@
+/* Chess Tutor Web UI - Styling */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    margin-bottom: 5px;
+}
+
+.header p {
+    font-size: 0.95em;
+    opacity: 0.9;
+}
+
+/* Main Content */
+.content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Board Panel */
+.board-panel {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.puzzle-info {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.puzzle-info h2 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.puzzle-info p {
+    color: #666;
+    font-size: 0.95em;
+    margin-bottom: 10px;
+}
+
+.puzzle-metadata {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.difficulty {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.difficulty.easy {
+    background: #d4edda;
+    color: #155724;
+}
+
+.difficulty.medium {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.difficulty.hard {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.puzzle-number {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #e7f3ff;
+    color: #0066cc;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+/* Chessboard */
+.board-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.chessboard {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 0;
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 1;
+    background: #333;
+    padding: 2px;
+    border-radius: 4px;
+}
+
+.square {
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    position: relative;
+}
+
+.square.light {
+    background: #f0d9b5;
+}
+
+.square.dark {
+    background: #b58863;
+}
+
+.square:hover {
+    opacity: 0.85;
+    transform: scale(1.05);
+}
+
+.square.legal-move::after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    position: absolute;
+    z-index: 1;
+}
+
+.square.selected {
+    background: #baca44 !important;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.square.last-move {
+    background: #aaa23b !important;
+}
+
+.piece {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Move Input */
+.move-input-section {
+    display: flex;
+    gap: 10px;
+}
+
+.move-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 1em;
+    font-family: 'Courier New', monospace;
+    text-transform: lowercase;
+    transition: border-color 0.3s;
+}
+
+.move-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+}
+
+.btn-primary {
+    background: #667eea;
+    color: white;
+    flex: 1;
+}
+
+.btn-primary:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Feedback */
+.feedback {
+    padding: 12px 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+    min-height: 20px;
+    font-size: 0.95em;
+}
+
+.feedback.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.feedback.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.feedback.info {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+.feedback.empty {
+    display: none;
+}
+
+/* Move History */
+.move-history {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+.move-history h4 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.move-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.move-item {
+    background: #667eea;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.empty-moves {
+    color: #999;
+    font-style: italic;
+}
+
+/* Control Panel */
+.control-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.control-panel > div {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.control-panel h3 {
+    font-size: 1em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Progress */
+.progress-section {
+    border-left-color: #28a745;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+#progressText {
+    font-size: 0.9em;
+    color: #666;
+    font-weight: bold;
+}
+
+/* Actions */
+.actions-section {
+    border-left-color: #ffc107;
+}
+
+.actions-section .btn {
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+}
+
+.btn-nav {
+    background: #667eea;
+    color: white;
+    width: 48%;
+}
+
+/* Hints Panel */
+.hints-panel {
+    border-left-color: #17a2b8;
+}
+
+.hints-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.hint-item {
+    padding: 8px 12px;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hint-item:hover {
+    background: #e7f3ff;
+    border-color: #667eea;
+}
+
+.hint-move {
+    font-weight: bold;
+    color: #667eea;
+}
+
+.hint-score {
+    font-size: 0.85em;
+    color: #999;
+}
+
+/* Legal Moves */
+.legal-moves-section {
+    border-left-color: #6f42c1;
+}
+
+.legal-moves-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.legal-move-badge {
+    background: #e7e5ff;
+    color: #667eea;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.legal-move-badge:hover {
+    background: #667eea;
+    color: white;
+}
+
+/* Navigation */
+.navigation-section {
+    border-left-color: #dc3545;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+/* Puzzle List */
+.puzzle-list-section {
+    border-left-color: #fd7e14;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.puzzles-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.puzzle-item {
+    padding: 8px 12px;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+}
+
+.puzzle-item:hover {
+    background: #e7f3ff;
+    border-color: #667eea;
+}
+
+.puzzle-item.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.puzzle-item-name {
+    flex: 1;
+}
+
+.puzzle-item-status {
+    font-size: 1em;
+    margin-left: 10px;
+}
+
+/* Footer */
+.footer {
+    background: #f8f9fa;
+    padding: 15px 20px;
+    text-align: center;
+    color: #666;
+    font-size: 0.9em;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Scrollbar Styling */
+.control-panel::-webkit-scrollbar,
+.move-history::-webkit-scrollbar,
+.puzzle-list-section::-webkit-scrollbar {
+    width: 6px;
+}
+
+.control-panel::-webkit-scrollbar-track,
+.move-history::-webkit-scrollbar-track,
+.puzzle-list-section::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.control-panel::-webkit-scrollbar-thumb,
+.move-history::-webkit-scrollbar-thumb,
+.puzzle-list-section::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+.control-panel::-webkit-scrollbar-thumb:hover,
+.move-history::-webkit-scrollbar-thumb:hover,
+.puzzle-list-section::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .content {
+        flex-direction: column;
+    }
+
+    .board-panel {
+        flex: 1;
+    }
+
+    .control-panel {
+        flex: 1;
+        max-height: 400px;
+    }
+
+    .chessboard {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 1.8em;
+    }
+
+    .content {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .chessboard {
+        max-width: 300px;
+    }
+
+    .control-panel {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .control-panel > div {
+        padding: 10px;
+    }
+}
